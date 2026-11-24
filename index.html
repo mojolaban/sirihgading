@@ -3,7 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sirih Gading Catering | Semi-intimate wedding specialist, Jabodetabek</title>
+<title>Sirih Gading Catering </title>
+<script>
+  const titleText = "Sirih Gading Catering";
+  let position = 0;
+  function animateTitle() {
+    document.title =
+      titleText.substring(position) +
+      "  |  " +
+      titleText.substring(0, position);
+
+    position = (position + 1) % titleText.length;
+  }
+  setInterval(animateTitle, 250);
+</script>
 <meta name="description" content="Sirih Gading Catering, spesialis pernikahan semi-intimate dengan paket all-in untuk area Jabodetabek sejak 2018. Wedding, corporate event, dan venue.">
 <meta property="og:title" content="Sirih Gading Catering">
 <meta property="og:description" content="Spesialis pernikahan semi-intimate dengan paket all-in untuk area Jabodetabek.">
