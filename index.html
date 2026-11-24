@@ -100,6 +100,14 @@ p{margin:0 0 1em}
 .top.solid .brand{color:var(--marun)}
 .brand b{display:block;font:italic 400 1.9rem/1 var(--display);letter-spacing:.01em}
 .brand span{display:block;margin-top:6px;font:400 .56rem/1 var(--body);letter-spacing:.38em;text-transform:uppercase}
+.right{display:flex;justify-content:flex-end;align-items:center;gap:clamp(18px,2.4vw,38px)}
+.lang{display:flex;align-items:center;gap:9px}
+.lang button{background:none;border:0;border-bottom:1px solid transparent;color:inherit;font:inherit;letter-spacing:inherit;cursor:pointer;padding:8px 0;opacity:.5;transition:opacity .3s,border-color .3s}
+.lang button:hover{opacity:1}
+.lang button[aria-pressed="true"]{opacity:1;border-color:currentColor}
+.lang span{opacity:.4}
+main,footer{transition:opacity .26s}
+.lang-swap main,.lang-swap footer{opacity:0}
 .menu-btn{display:none;justify-self:end;background:none;border:0;color:inherit;cursor:pointer;padding:10px 0}
 .sheet{display:none}
 @media (max-width:1040px){
@@ -440,6 +448,7 @@ footer{overflow:hidden}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FoodEstablishment","name":"Sirih Gading Catering","url":"https://www.sirihgading.com/","image":"https://www.sirihgading.com/images/w-corridor.jpg","telephone":"+6281977003005","areaServed":"Jabodetabek","foundingDate":"2018",
 "address":{"@type":"PostalAddress","streetAddress":"The Gallery Cibis Park, Jl TB Simatupang No.2, Cilandak","addressLocality":"Jakarta Selatan","addressCountry":"ID"},
+"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"19:00"},
 "sameAs":["https://www.instagram.com/sirihgadingcatering/","https://www.tiktok.com/@sirihgadingcatering","https://www.threads.com/@sirihgadingcatering"]}
 </script>
 </head>
@@ -464,12 +473,17 @@ footer{overflow:hidden}
     </ul>
     <!-- Bila ada file logo: ganti isi tautan ini dengan <img src="images/logo.svg" alt="Sirih Gading Catering" height="48"> -->
     <a class="brand" href="#top"><b>Sirih Gading</b><span>Catering Service</span></a>
-    <ul class="nav nav-r caps">
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#office">Office</a></li>
-      <li><a href="#contact">Contact Us</a></li>
-    </ul>
-    <button class="menu-btn caps" aria-expanded="false" aria-controls="sheet">Menu</button>
+    <div class="right">
+      <ul class="nav nav-r caps">
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#office">Office</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <div class="lang caps" role="group" aria-label="Bahasa / Language">
+        <button type="button" data-lang="id" aria-pressed="true" aria-label="Bahasa Indonesia">ID</button><span>/</span><button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+      <button class="menu-btn caps" aria-expanded="false" aria-controls="sheet">Menu</button>
+    </div>
   </div>
 </header>
 <nav class="sheet" id="sheet" aria-label="Menu">
@@ -680,7 +694,7 @@ footer{overflow:hidden}
           <h3>The Gallery Cibis Park</h3>
           <dl>
             <div><dt class="caps">Alamat</dt><dd>Jl TB Simatupang No.2, Cilandak,<br>Jakarta Selatan</dd></div>
-            <div><dt class="caps">Office hour</dt><dd>Weekdays: 10.00 – 19.00 WIB</dd></div>
+            <div><dt class="caps">Office hour</dt><dd>Senin – Jumat<br>10.00 – 19.00 WIB</dd></div>
           </dl>
           <a class="more" href="https://www.google.com/maps/search/?api=1&query=The+Gallery+Cibis+Park+Jl+TB+Simatupang+No.2+Cilandak+Jakarta+Selatan" target="_blank" rel="noopener">Petunjuk arah</a>
         </div>
@@ -692,7 +706,7 @@ footer{overflow:hidden}
           <h3>Azila Villa</h3>
           <dl>
             <div><dt class="caps">Alamat</dt><dd>Jl Damai PBSI No.2A, Cipayung,<br>Jakarta Timur</dd></div>
-            <div><dt class="caps">Office hour</dt><dd>Weekdays: 09.00 – 18.00 WIB</dd></div>
+            <div><dt class="caps">Office hour</dt><dd>Senin – Jumat<br>09.00 – 18.00 WIB</dd></div>
           </dl>
           <a class="more" href="https://www.google.com/maps/search/?api=1&query=Azila+Villa+Jl+Damai+PBSI+No.2A+Cipayung+Jakarta+Timur" target="_blank" rel="noopener">Petunjuk arah</a>
         </div>
@@ -736,7 +750,7 @@ footer{overflow:hidden}
 
     <aside class="partner rv" id="partnership" aria-labelledby="p-title">
       <div><span class="caps">Vendor, supplier, dan kerja sama</span><h3 id="p-title">Partnership</h3></div>
-      <p>Untuk penawaran vendor, supplier, media, dan bentuk kerja sama lainnya, hubungi tim kemitraan kami. Kami siap mendiskusikan peluang terbaik bersama Anda.</p>
+      <p>Untuk penawaran vendor, supplier, media, dan bentuk kerja sama lainnya, hubungi tim kemitraan kami. Pemesanan acara dilayani lewat formulir di atas.</p>
       <div class="act">
         <a class="tel" data-wa="6281977003001" data-msg="partner" href="#">+62 819-7700-3001</a>
         <a class="btn btn-ghost" data-wa="6281977003001" data-msg="partner" href="#">Hubungi tim kemitraan</a>
@@ -816,13 +830,164 @@ const CONFIG = {
 };
 /* ====== AKHIR DATA ====== */
 
+/* ====== TERJEMAHAN INGGRIS ======
+   Kiri: teks Indonesia persis seperti di halaman. Kanan: versi Inggrisnya.
+   Teks yang tidak ada di daftar ini tampil sama di kedua bahasa. */
+const EN = {
+  "Langsung ke isi": "Skip to content",
+  "Lihat layanan": "Explore our services",
+  "Gulir": "Scroll",
+  "Lihat": "View",
+  "Tutup": "Close",
+  "Hari bahagia Anda,": "Your special day,",
+  "tertata dengan anggun": "gracefully orchestrated",
+  "Akad nikah": "Akad ceremony",
+  "Dekorasi": "Décor",
+  "Selamat datang": "Welcome",
+  "Berdiri sejak": "Established",
+  "3 venue": "3 venues",
+  "Dikelola sendiri": "Managed in-house",
+  "Satu tim untuk seluruh perayaan": "One team for the entire celebration",
+  "Sirih Gading Catering adalah spesialis pernikahan semi-intimate yang melayani area Jabodetabek sejak 2018.": "Sirih Gading Catering is a semi-intimate wedding specialist, serving Greater Jakarta since 2018.",
+  "Kami menyatukan katering, dekorasi, dan venue dalam satu paket, supaya Anda dan keluarga bisa hadir sepenuhnya untuk para tamu. Di luar pernikahan, kami juga menangani corporate event dan acara keluarga.": "We bring catering, décor, and venue together in a single package, so you and your family can be fully present with your guests. Beyond weddings, we also cater corporate events and family gatherings.",
+  "Lihat karya kami": "See our work",
+  "Momen pilihan": "Signature moments",
+  "Dirayakan bersama Sirih Gading": "Celebrated with Sirih Gading",
+  "Gulir untuk menjelajah": "Scroll to explore",
+  "Senyum di hari akad": "A smile on the akad day",
+  "Lorong bunga menuju pelaminan": "A floral aisle to the bridal dais",
+  "Malam penuh kembang api": "An evening of sparklers",
+  "Dinding bunga biru": "The blue floral wall",
+  "Akad di NIWA Privé": "An akad at NIWA Privé",
+  "Potret sebelum resepsi": "A portrait before the reception",
+  "Pelaminan serba putih": "An all-white bridal dais",
+  "Yang kami kerjakan": "What we do",
+  "Dari akad yang khidmat sampai perayaan perusahaan, setiap acara ditangani satu tim dari awal hingga selesai.": "From a solemn akad to a company celebration, every event is handled by one team from start to finish.",
+  "Katering, dekorasi custom, dan venue dalam satu paket.": "Catering, bespoke décor, and venue in one package.",
+  "Buffet dan food stall untuk resepsi di venue pilihan Anda.": "Buffet and food stalls for a reception at the venue of your choice.",
+  "Paket akad, termasuk di Masjid Istiqlal.": "Akad packages, including at Istiqlal Mosque.",
+  "Katering dan venue untuk pameran, gathering, dan perayaan kantor.": "Catering and venues for exhibitions, gatherings, and office celebrations.",
+  "Cara memesan": "How to book",
+  "Empat langkah menuju hari-H": "Four steps to the big day",
+  "Satu alur yang jelas sejak chat pertama, supaya Anda tahu apa yang terjadi berikutnya.": "One clear path from the very first chat, so you always know what comes next.",
+  "Konsultasi": "Consultation",
+  "Ceritakan tanggal, jumlah tamu, dan gambaran acara Anda lewat WhatsApp.": "Tell us your date, guest count, and vision over WhatsApp.",
+  "Food tasting dan survei": "Food tasting and site visit",
+  "Cicipi menu dan lihat langsung dekorasi serta venue pilihan.": "Taste the menu and see the décor and venues in person.",
+  "Penyusunan paket": "Tailoring your package",
+  "Menu, dekorasi, dan susunan acara disesuaikan dengan kebutuhan Anda.": "Menu, décor, and rundown are tailored to your needs.",
+  "Hari acara": "The big day",
+  "Tim kami menyiapkan dan menjalankan semuanya, Anda menikmati harinya.": "Our team sets up and runs everything while you enjoy the day.",
+  "Cita rasa": "Flavours",
+  "Nasi putih dan nasi goreng": "Steamed rice and nasi goreng",
+  "Ayam bakar": "Ayam bakar (grilled chicken)",
+  "Daging lada hitam": "Black pepper beef",
+  "Ikan asam manis": "Sweet and sour fish",
+  "Capcay": "Capcay (stir-fried vegetables)",
+  "Sate ayam": "Chicken satay",
+  "Bakso": "Bakso (meatball soup)",
+  "Siomay": "Siomay (steamed fish dumplings)",
+  "Kambing guling": "Kambing guling (spit-roasted goat)",
+  "Puding": "Pudding",
+  "Buah potong": "Fresh cut fruit",
+  "Es krim": "Ice cream",
+  "Aneka kue": "Assorted cakes",
+  "Minuman": "Beverages",
+  "Air mineral": "Mineral water",
+  "Es buah": "Es buah (iced fruit cocktail)",
+  "Teh dan kopi": "Tea and coffee",
+  "Minta daftar menu dan harga": "Request the menu and price list",
+  "Tiga venue yang kami kelola sendiri. Bisa dipesan bersama paket atau venue saja.": "Three venues we manage ourselves. Book them with a package or as venue only.",
+  "TB Simatupang, Jakarta Selatan": "TB Simatupang, South Jakarta",
+  "Cipayung, Jakarta Timur": "Cipayung, East Jakarta",
+  "Jakarta Selatan": "South Jakarta",
+  "Jakarta Timur": "East Jakarta",
+  "Glass pavilion bermandikan cahaya alami, untuk pernikahan dan acara perusahaan.": "A glass pavilion bathed in natural light, for weddings and corporate events.",
+  "Venue intim untuk pernikahan, private event, gathering, dan photoshoot.": "An intimate venue for weddings, private events, gatherings, and photoshoots.",
+  "Pool villa untuk pernikahan semi-intimate, gathering, dan staycation.": "A pool villa for semi-intimate weddings, gatherings, and staycations.",
+  "Semua": "All",
+  "Pengantin wanita berkerudung renda": "Bride in a lace veil",
+  "Pameran di The Gallery CIBIS Park": "Exhibition at The Gallery CIBIS Park",
+  "Pengantin berjalan di antara kembang api": "Newlyweds walking through sparklers",
+  "Pengantin di depan dinding bunga biru": "Newlyweds before a blue floral wall",
+  "Hidangan buffet": "Buffet service",
+  "Pelaminan bunga putih": "White floral bridal dais",
+  "Potret pengantin wanita bergaun renda": "Portrait of a bride in a lace gown",
+  "Hidangan Nusantara untuk acara perusahaan": "Indonesian dishes for a corporate event",
+  "Akad nikah dengan dekorasi bunga biru": "Akad ceremony with blue floral décor",
+  "Dekorasi penyambutan tamu": "Welcome décor",
+  "Dekorasi akad di NIWA Privé": "Akad décor at NIWA Privé",
+  "Pelaminan bernuansa marun": "Maroon-toned bridal dais",
+  "Kunjungi kami": "Visit us",
+  "Dua kantor untuk konsultasi, food tasting, dan melihat venue secara langsung.": "Two offices for consultations, food tastings, and venue viewings.",
+  "Alamat": "Address",
+  "Office hour": "Office hours",
+  "Senin – Jumat": "Monday – Friday",
+  "10.00 – 19.00 WIB": "10 am – 7 pm (WIB, UTC+7)",
+  "09.00 – 18.00 WIB": "9 am – 6 pm (WIB, UTC+7)",
+  "Petunjuk arah": "Get directions",
+  "Ceritakan rencana acara Anda": "Tell us about your event",
+  "Isi formulir singkat ini, lalu lanjutkan percakapan dengan tim reservasi kami di WhatsApp.": "Fill in this short form, then continue the conversation with our reservations team on WhatsApp.",
+  "Tim reservasi": "Reservations team",
+  "Nama": "Name",
+  "Jenis acara": "Event type",
+  "Lainnya": "Other",
+  "Belum menentukan": "Not decided yet",
+  "Venue lain": "Another venue",
+  "Tanggal acara": "Event date",
+  "Perkiraan tamu": "Estimated guests",
+  "Catatan": "Notes",
+  "(opsional)": "(optional)",
+  "Kirim lewat WhatsApp": "Send via WhatsApp",
+  "WhatsApp terbuka di tab baru. Tekan kirim di sana untuk mengirim pesan Anda.": "WhatsApp has opened in a new tab. Press send there to deliver your message.",
+  "Vendor, supplier, dan kerja sama": "Vendors, suppliers, and collaborations",
+  "Untuk penawaran vendor, supplier, media, dan bentuk kerja sama lainnya, hubungi tim kemitraan kami. Pemesanan acara dilayani lewat formulir di atas.": "For vendor, supplier, media, and other collaboration proposals, please contact our partnerships team. Event bookings are handled through the form above.",
+  "Hubungi tim kemitraan": "Contact the partnerships team",
+  "Semi-intimate wedding specialist untuk area Jabodetabek, sejak 2018.": "Semi-intimate wedding specialist for Greater Jakarta, since 2018.",
+  "Jelajahi": "Explore",
+  "Ikuti kami": "Follow us",
+  "Sirih Gading Catering. Seluruh foto dilindungi hak cipta.": "Sirih Gading Catering. All photographs are protected by copyright.",
+  "Kembali ke atas": "Back to top",
+  "Beranda": "Home",
+  "Momen": "Moments",
+  "Chat dengan kami": "Chat with us",
+  "Pengantin di depan dinding bunga biru dan putih": "Newlyweds before a blue and white floral wall",
+  "Lorong berhias rangkaian bunga menuju pelaminan": "A flower-lined aisle leading to the bridal dais",
+  "Pengantin wanita berkerudung renda di depan rangkaian bunga": "Bride in a lace veil before a floral arrangement",
+  "Pelaminan bunga putih di ujung lorong": "White floral bridal dais at the end of the aisle",
+  "Hidangan buffet disajikan untuk tamu": "Buffet dishes being served to guests",
+  "Hidangan Nusantara dalam mangkuk tanah liat": "Indonesian dishes in clay bowls",
+  "Interior glass pavilion The Gallery CIBIS Park": "Interior of the glass pavilion at The Gallery CIBIS Park",
+  "Ruang akad NIWA Privé dengan dinding bunga dan lampu gantung": "NIWA Privé akad hall with a floral wall and chandelier",
+  "Villa Azila dengan kolam renang dilihat dari atas": "Villa Azila and its pool seen from above",
+  "Saring galeri": "Filter gallery",
+  "mis. 300": "e.g. 300",
+  "Tema, anggaran, atau pertanyaan Anda": "Theme, budget, or any questions",
+  "Bagian halaman": "Page sections",
+  "Galeri foto": "Photo gallery",
+  "Foto sebelumnya": "Previous photo",
+  "Foto berikutnya": "Next photo",
+  "Katering, dekorasi, dan venue dalam satu paket all-in untuk pernikahan semi-intimate di Jabodetabek.": "Catering, décor, and venue in one all-in package for semi-intimate weddings across Greater Jakarta.",
+  "Halo Sirih Gading Catering, saya ingin minta daftar menu dan harga paket.": "Hello Sirih Gading Catering,\n\nCould you please send me your menu and package price list?\n\nThank you."
+};
+const EN_META = {
+  title: "Sirih Gading Catering | Semi-intimate wedding specialist, Greater Jakarta",
+  desc: "Sirih Gading Catering is a semi-intimate wedding specialist offering all-in packages across Greater Jakarta since 2018. Weddings, corporate events, and venues.",
+  pesanAwal: "Hello Sirih Gading Catering,\n\nI would like to enquire about your event packages. Could you share more information?\n\nThank you.",
+  pesanMitra: "Hello Sirih Gading Catering Partnerships Team,\n\nI would like to propose a collaboration.\n\n*Name:* \n*Company:* \n*Field:* \n*Proposal:* \n\nThank you."
+};
+let lang = "id";
+const t = s => (lang === "en" && EN[s]) || s;
+/* ====== AKHIR TERJEMAHAN ====== */
+
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const root = document.documentElement;
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* data kontak */
-const wa = (msg, num) => "https://wa.me/" + (num || CONFIG.whatsapp) + "?text=" + encodeURIComponent(msg || CONFIG.pesanAwal);
-$$("[data-wa]").forEach(a => { a.href = wa(a.dataset.msg === "partner" ? CONFIG.pesanMitra : a.dataset.msg, a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+const wa = (msg, num) => "https://wa.me/" + (num || CONFIG.whatsapp) + "?text=" + encodeURIComponent(msg || (lang === "en" ? EN_META.pesanAwal : CONFIG.pesanAwal));
+const linkWa = () => $$("[data-wa]").forEach(a => { a.href = wa(a.dataset.msg === "partner" ? (lang === "en" ? EN_META.pesanMitra : CONFIG.pesanMitra) : a.dataset.msg && t(a.dataset.msg), a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+linkWa();
 
 /* perlindungan foto: tanpa klik kanan, seret, atau tekan-lama pada gambar */
 const guarded = ".hero,.cv,.duo,.tile,.tile-s,.lb,figure";
@@ -849,8 +1014,9 @@ if (!calm) $$(".panel").forEach((p, i) => {
 
 /* efek gulir: kata menyala, galeri mendatar, tulisan besar di footer */
 const lead = $(".intro .lead"), showSec = $(".show"), track = $(".show-track"), showBar = $(".show-bar i"), giant = $(".giant");
-const words = lead.textContent.trim().split(/\s+/).map(w => { const s = document.createElement("span"); s.textContent = w + " "; return s; });
-lead.textContent = ""; lead.append(...words);
+const leadId = lead.textContent.trim(); let words = [];
+const buildLead = () => { words = t(leadId).split(/\s+/).map(w => { const s = document.createElement("span"); s.textContent = w + " "; return s; }); lead.textContent = ""; lead.append(...words); };
+buildLead();
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const scrollFx = vh => {
   if (calm) return;
@@ -877,7 +1043,7 @@ if (!calm && matchMedia("(hover:hover) and (pointer:fine)").matches) {
     const view = t && t.closest(".tile"), drag = t && t.closest(".show-track"), link = t && t.closest("a,button,.tile-s,select,input");
     cur.classList.toggle("view", !!(view || drag));
     cur.classList.toggle("link", !!link && !view && !drag);
-    lab.textContent = view ? "Lihat" : drag ? "Gulir" : "";
+    lab.textContent = view ? t("Lihat") : drag ? t("Gulir") : "";
   }, {passive: true});
   document.documentElement.addEventListener("mouseleave", () => cur.classList.remove("on"));
   (function loop() { cx += (tx - cx) * .17; cy += (ty - cy) * .17; cur.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)"; requestAnimationFrame(loop); })();
@@ -910,7 +1076,7 @@ addEventListener("resize", () => requestAnimationFrame(onScroll));
 
 /* menu ponsel */
 const mb = $(".menu-btn"), sheet = $("#sheet");
-const setMenu = open => { sheet.classList.toggle("open", open); mb.setAttribute("aria-expanded", open); mb.textContent = open ? "Tutup" : "Menu"; document.body.style.overflow = open ? "hidden" : ""; onScroll(); };
+const setMenu = open => { sheet.classList.toggle("open", open); mb.setAttribute("aria-expanded", open); mb.textContent = open ? t("Tutup") : "Menu"; document.body.style.overflow = open ? "hidden" : ""; onScroll(); };
 mb.addEventListener("click", () => setMenu(!sheet.classList.contains("open")));
 sheet.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
 onScroll();
@@ -943,8 +1109,8 @@ let cur = 0, opener = null;
 const show = i => {
   const v = visible(); cur = (i + v.length) % v.length; const g = v[cur]._g;
   lbImg.classList.remove("show");
-  setTimeout(() => { lbImg.onload = () => lbImg.classList.add("show"); lbImg.src = g.src; lbImg.alt = g.alt; if (lbImg.complete) lbImg.classList.add("show"); }, calm ? 0 : 220);
-  lbCap.textContent = g.alt; lbCount.textContent = (cur + 1) + " / " + v.length;
+  setTimeout(() => { lbImg.onload = () => lbImg.classList.add("show"); lbImg.src = g.src; lbImg.alt = t(g.alt); if (lbImg.complete) lbImg.classList.add("show"); }, calm ? 0 : 220);
+  lbCap.textContent = t(g.alt); lbCount.textContent = (cur + 1) + " / " + v.length;
 };
 const openLb = i => { opener = document.activeElement; lb.classList.add("open"); document.body.style.overflow = "hidden"; show(i); $("#lb-close").focus(); };
 const closeLb = () => { lb.classList.remove("open"); document.body.style.overflow = ""; if (opener) opener.focus(); };
@@ -967,12 +1133,17 @@ const form = $("#waform"), tgl = form.elements.tanggal;
 tgl.min = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
 form.addEventListener("submit", e => {
   e.preventDefault();
-  const f = new FormData(form), v = k => (f.get(k) || "").toString().trim();
-  const rinci = ["*Nama:* " + v("nama"), "*Jenis acara:* " + v("acara"), "*Venue:* " + v("venue")];
-  if (v("tanggal")) rinci.push("*Tanggal acara:* " + new Date(v("tanggal") + "T00:00").toLocaleDateString("id-ID", {weekday: "long", day: "numeric", month: "long", year: "numeric"}));
-  if (v("tamu")) rinci.push("*Perkiraan tamu:* " + v("tamu") + (/^\d+$/.test(v("tamu")) ? " orang" : ""));
-  if (v("catatan")) rinci.push("*Catatan:* " + v("catatan"));
-  const pesan = "Halo Sirih Gading Catering,\n\nSaya ingin berkonsultasi untuk acara berikut:\n\n" + rinci.join("\n") + "\n\nMohon informasi paket dan ketersediaan tanggalnya.\n\nTerima kasih.";
+  const f = new FormData(form), v = k => (f.get(k) || "").toString().trim(), en = lang === "en";
+  const L = en
+    ? {nama: "Name", acara: "Event type", venue: "Venue", tgl: "Event date", tamu: "Estimated guests", org: " guests", cat: "Notes",
+       buka: "Hello Sirih Gading Catering,\n\nI would like to enquire about the following event:\n\n", tutup: "\n\nCould you share your package details and availability for this date?\n\nThank you."}
+    : {nama: "Nama", acara: "Jenis acara", venue: "Venue", tgl: "Tanggal acara", tamu: "Perkiraan tamu", org: " orang", cat: "Catatan",
+       buka: "Halo Sirih Gading Catering,\n\nSaya ingin berkonsultasi untuk acara berikut:\n\n", tutup: "\n\nMohon informasi paket dan ketersediaan tanggalnya.\n\nTerima kasih."};
+  const rinci = ["*" + L.nama + ":* " + v("nama"), "*" + L.acara + ":* " + v("acara"), "*" + L.venue + ":* " + v("venue")];
+  if (v("tanggal")) rinci.push("*" + L.tgl + ":* " + new Date(v("tanggal") + "T00:00").toLocaleDateString(en ? "en-GB" : "id-ID", {weekday: "long", day: "numeric", month: "long", year: "numeric"}));
+  if (v("tamu")) rinci.push("*" + L.tamu + ":* " + v("tamu") + (/^\d+$/.test(v("tamu")) ? L.org : ""));
+  if (v("catatan")) rinci.push("*" + L.cat + ":* " + v("catatan"));
+  const pesan = L.buka + rinci.join("\n") + L.tutup;
   window.open(wa(pesan), "_blank", "noopener");
   $("#sent").hidden = false;
 });
@@ -995,6 +1166,39 @@ if ("IntersectionObserver" in window) {
   }), {rootMargin: "-45% 0px -50% 0px"});
   $$("#hero,#profile,#moments,#services,#menu,#venues,#gallery,#office,#contact").forEach(s => spy.observe(s));
 } else $$(".rv,.cv,h2").forEach(el => el.classList.add("in"));
+
+/* dwibahasa: tombol ID / EN menukar semua teks tanpa memuat ulang halaman */
+const tn = [], ta = [], titleId = document.title, metaDesc = $('meta[name="description"]'), descId = metaDesc.content;
+const norm = s => s.replace(/\s+/g, " ").trim();
+(() => {
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+  while ((n = w.nextNode())) {
+    if (n.parentElement.closest("script,style,.lead")) continue;
+    const k = norm(n.nodeValue);
+    if (EN[k]) tn.push([n, n.nodeValue, n.nodeValue.replace(n.nodeValue.trim(), EN[k])]);
+  }
+  $$("[alt],[aria-label],[placeholder]").forEach(e => ["alt", "aria-label", "placeholder"].forEach(a => { const v = e.getAttribute(a); if (v && EN[v]) ta.push([e, a, v, EN[v]]); }));
+})();
+const setLang = (l, simpan) => {
+  lang = l === "en" ? "en" : "id"; const en = lang === "en";
+  root.lang = lang;
+  tn.forEach(([n, a, b]) => n.nodeValue = en ? b : a);
+  ta.forEach(([e, k, a, b]) => e.setAttribute(k, en ? b : a));
+  document.title = en ? EN_META.title : titleId; metaDesc.content = en ? EN_META.desc : descId;
+  buildLead(); linkWa();
+  if (sheet.classList.contains("open")) mb.textContent = t("Tutup");
+  $$(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  if (simpan) try { localStorage.setItem("sg-lang", lang); } catch (e) {}
+  onScroll();
+};
+$$(".lang button").forEach(b => b.addEventListener("click", () => {
+  if (b.dataset.lang === lang) return;
+  document.body.classList.add("lang-swap");
+  setTimeout(() => { setLang(b.dataset.lang, true); document.body.classList.remove("lang-swap"); }, calm ? 0 : 260);
+}));
+let awal = new URLSearchParams(location.search).get("lang");
+if (!awal) try { awal = localStorage.getItem("sg-lang"); } catch (e) {}
+if (awal === "en") setLang("en");
 </script>
 </body>
 </html>
