@@ -9,6 +9,7 @@
 <meta property="og:description" content="Spesialis pernikahan semi-intimate dengan paket all-in untuk area Jabodetabek.">
 <meta property="og:image" content="images/w-corridor.jpg">
 <meta name="theme-color" content="#461718">
+<link rel="icon" href="images/favicon.png" type="image/png">
 <script>document.documentElement.className="js"</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -510,8 +511,10 @@ footer a:hover{color:var(--gading)}
         <p class="it">Contact us</p>
         <h2>Ceritakan rencana acara Anda</h2>
         <span class="caps" style="color:var(--emas-muda)">WhatsApp</span>
-        <a class="num" data-wa href="#" id="num"></a>
+        <<a class="num" data-wa href="#" id="num" style="margin-bottom:0"></a>
+        <a class="num" href="https://wa.me/6281977003007" target="_blank" rel="noopener">+62 819-7700-3007</a>
         <a class="btn btn-light" data-wa href="#"><svg><use href="#wa"/></svg>Chat WhatsApp</a>
+        <p style="margin-top:28px;opacity:.85">Kerja sama, vendor, dan supplier: <a href="https://wa.me/6281977003001" target="_blank" rel="noopener">+62 819-7700-3001</a></p>
       </div>
       <form id="waform" class="rv">
         <label><span class="caps">Nama</span><input name="nama" required autocomplete="name"></label>
@@ -527,8 +530,8 @@ footer a:hover{color:var(--gading)}
     </div>
 
     <div class="office" id="office">
-      <div><span class="caps">Office</span><p id="addr"></p><p><a id="maps" href="#" target="_blank" rel="noopener">Buka di Google Maps</a></p></div>
-      <div><span class="caps">Jam buka</span><p id="hours"></p></div>
+      <div><span class="caps">Office</span><p>The Gallery Cibis Park</p><p>Jl TB Simatupang No.2, Cilandak, Jakarta Selatan</p><p>Office hour: 10.00–19.00</p><p><a href="https://www.google.com/maps/search/?api=1&query=The+Gallery+Cibis+Park+Jl+TB+Simatupang+No.2+Cilandak" target="_blank" rel="noopener">Buka di Google Maps</a></p></div>
+      <div><span class="caps">Azila Villa</span><p>Jl Damai PBSI No.2A, Cipayung, Jakarta Timur</p><p>Office hour: 09.00–18.00</p><p><a href="https://www.google.com/maps/search/?api=1&query=Azila+Villa+Jl+Damai+PBSI+No.2A+Cipayung" target="_blank" rel="noopener">Buka di Google Maps</a></p></div>
       <div><span class="caps">Ikuti kami</span>
         <p><a href="https://www.instagram.com/sirihgadingcatering/" target="_blank" rel="noopener">Instagram @sirihgadingcatering</a></p>
         <p><a href="https://www.tiktok.com/@sirihgadingcatering" target="_blank" rel="noopener">TikTok @sirihgadingcatering</a></p>
@@ -561,8 +564,8 @@ footer a:hover{color:var(--gading)}
 <script>
 /* ====== UBAH DATA DI SINI ====== */
 const CONFIG = {
-  whatsapp: "628995545086",             // format internasional tanpa + atau spasi
-  whatsappTampil: "+62 899-5545-086",
+  whatsapp: "6281977003005",            // format internasional tanpa + atau spasi
+  whatsappTampil: "+62 819-7700-3005",
   pesanAwal: "Halo Sirih Gading Catering, saya ingin bertanya tentang paket acara.",
   alamat: "[Isi alamat kantor]",
   jamBuka: "[Isi hari dan jam buka]",
@@ -594,9 +597,6 @@ const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const wa = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg || CONFIG.pesanAwal);
 $$("[data-wa]").forEach(a => { a.href = wa(a.dataset.msg); a.target = "_blank"; a.rel = "noopener"; });
 $("#num").textContent = CONFIG.whatsappTampil;
-$("#addr").textContent = CONFIG.alamat;
-$("#hours").textContent = CONFIG.jamBuka;
-$("#maps").href = CONFIG.mapsUrl;
 $("#yr").textContent = new Date().getFullYear();
 
 /* layar pembuka: tutup setelah halaman siap, paling lama 2,5 detik */
